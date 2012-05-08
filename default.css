@@ -1,0 +1,368 @@
+
+* {
+    cursor: default;
+    color: #111;
+    font: 11px "Lucida Grande";
+}
+
+body {
+    -webkit-user-select: none;
+}
+
+a {
+	color: #27b;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn {
+    outline: 0px;
+	margin-right: 4px;
+    padding: 4px;
+    background: #e3e3e3;
+    border: 1px solid #bbb;
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+    color: #444;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+}
+.btn:hover {
+    background: #d9d9d9;
+    -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+    color: #444;
+    cursor: pointer;
+}
+.btn:active {
+    background: #d0d0d0;
+    -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+    color: #222;
+}
+
+#dvbackground {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #eee url(clouds.png) repeat-x;
+}
+
+#dvpanelcontainer {
+    position: fixed;
+    bottom: 0px;
+}
+
+#dvhome, #dvment, #dvmsgs, #dvsrch, #dvconv {
+	position: absolute;
+    top: 0px;
+    bottom: 0px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 
+ ********* STATUS MESSAGE *********
+ */
+
+.status-row {
+	clear: both;
+    margin: 0px 4px;
+    padding: 2px 0px;
+}
+
+.status-row:hover .statusactions {
+	opacity: 1;
+}
+
+.status-row.favorite .favicon {
+	display: block;
+}
+
+.avatar {
+	margin-top: 1px;
+    float: left;
+}
+
+.avatar img {
+	height: 30px;
+    width: 30px;
+    -webkit-border-radius: 3px;
+}
+
+.status {
+	position: relative; /* so text selection highlight stays within status */
+    margin-left: 34px;
+    padding: 2px 4px 4px 4px;
+    word-wrap: break-word;
+    border: 1px solid #b2b2b2;
+    border-top: 1px solid #c2c2c2;
+    border-bottom: 1px solid #9c9c9c;
+    background: rgba(255,255,255,.9);
+    -webkit-user-select: text;
+    -webkit-border-radius: 6px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-box-shadow: 0px 1px 2px #c0c0c0, inset 0px 0px 1px 1px #fff;
+	-webkit-transition-duration: 0.1s;
+	-webkit-transition-property: background, -webkit-box-shadow;
+}
+
+.selected .status {
+    border: 1px solid #b2b292;
+    border-top: 1px solid #c2c2a2;
+    border-bottom: 1px solid #929272;
+    background: rgba(245,245,225,.9);
+}
+
+.status-row.myself .avatar {
+	float: right;
+}
+
+.status-row.myself .status {
+	margin-left: 2px;
+	margin-right: 34px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 0px;
+}
+
+.status-row.mention .status {
+    border: 1px solid #aac;
+    border-top: 1px solid #bbd;
+    border-bottom: 1px solid #88a;
+    background: rgba(235,235,255,.9);
+    -webkit-box-shadow: 0px 1px 2px #c0c0c0;
+}
+
+.status-row.mention.selected .status {
+    border: 1px solid #99c;
+    border-top: 1px solid #aad;
+    border-bottom: 1px solid #77a;
+    background: rgba(210,210,255,.9);
+    -webkit-box-shadow: 0px 1px 2px #c0c0c0, inset 0px 0px 1px 1px rgba(255,255,255,.6);
+}
+
+.screenName {
+	height: 14px; /* matches height of favicon */
+    padding-top: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.screenName a {
+   	color: #26b;
+    font-weight: bold;
+}
+
+.inlineImage {
+    width: 100%;
+    cursor: pointer;
+}
+
+.statusfooter {
+	clear: both;
+	height: 24px; /* 16 for buttons + 8 top and bottom padding */
+}
+
+.timestamp, .timestamp a, .retweetedByline, .retweetedByline a {
+	padding: 4px 0px;
+    white-space: nowrap;
+	color: #aaa;
+    font-weight:bold;
+}
+
+.timestamp a:hover, .retweetedByline a:hover {
+    color: #666;
+}
+
+.retweetedByline {
+	clear: both;
+	padding: 5px 0px 0px 0px;
+}
+
+.statusactions {
+	float: right;
+    padding: 4px 0px;
+	opacity: 0;  /* opacity: 1 on .status-row:hover */
+	-webkit-transition-duration: 0.3s;
+	-webkit-transition-property: opacity;
+}
+
+.favicon {
+	float: right;
+    width: 14px;
+    height: 14px;
+    background: url(toolbar.png) -97px -77px no-repeat;
+	display: none; /* display:block on .status-row.favorite */
+}
+
+.del, .dm, .fav, .reply, .rt, .conv {
+	float: right;
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+    cursor: default;
+    background: url(toolbar.png) no-repeat;
+}
+
+.del          { background-position: -80px -60px;}
+.del:hover    { background-position: -80px -76px;}
+.dm           { background-position: -64px -60px;}
+.dm:hover     { background-position: -64px -76px;}
+.fav          { background-position: -48px -60px;}
+.fav:hover    { background-position: -48px -76px;}
+.reply        { background-position: -32px -60px;}
+.reply:hover  { background-position: -32px -76px;}
+.rt           { background-position: -16px -60px;}
+.rt:hover     { background-position: -16px -76px;}
+.conv         { background-position:   0px -60px;}
+.conv:hover   { background-position:   0px -76px;}
+
+/* 
+ ********* CONVERSATION *********
+ */
+ 
+.convloading {
+	padding: 4px;
+    white-space: nowrap;
+	color: #aaa;
+    font-weight: bold;
+}
+
+/* 
+ ********* SEARCH *********
+ */
+
+#dvsearchbox {
+    text-align: center;
+    padding: 4px;
+}
+
+#insearchbox {
+    width: 80%;
+    outline: 0px;
+    opacity: .8;
+}
+
+#dvsearchresults {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 
+ ********* TOOLBAR *********
+ */
+
+#dvtoolbar {
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 2px;
+}
+
+#dvcaret {
+    position: fixed;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: url(toolbar.png) 0px -40px no-repeat;
+}
+
+#bnhome, #bnment, #bnmsgs, #bnsrch, #bntogg {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+    background: url(toolbar.png) no-repeat;
+}
+#bntogg {
+	float:right;
+    margin-right: 0px;
+}
+.unlit#bnhome { background-position:   0px   0px; }
+.unlit#bnment { background-position: -20px   0px; }
+.unlit#bnmsgs { background-position: -40px   0px; }
+.lit#bnhome   { background-position:   0px -20px; }
+.lit#bnment   { background-position: -20px -20px; }
+.lit#bnmsgs   { background-position: -40px -20px; }
+#bnsrch { background-position:  -80px 0px; }
+#bntogg { background-position: -100px 0px; }
+
+/* 
+ ********* UPDATE AREA *********
+ */
+
+#dvupdatearea {
+    padding: 0px 4px 6px 4px;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    display: none;
+}
+
+#taupdatearea {
+    width: 100%;
+    background-color: transparent;
+    outline: 0px;
+    border-width: 6 6 6 6;
+    -webkit-border-image: url(tweetarea.png) 6 6 6 6 stretch stretch;
+}
+
+#taupdatearea::-webkit-scrollbar {
+    width: 6px;
+}
+
+#taupdatearea::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    border: 0px;
+    background: rgba(0,0,0,.2);
+    -webkit-border-radius: 3px;
+}
+
+#bnshorten {
+    width: 20px;
+    height: 20px;
+    background: url(toolbar.png) -20px -40px no-repeat;
+}
+
+/* 
+ ********* MSG *********
+ */
+
+#dvmsg, #dvconfirmrt, #dvconfirmdelete {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    padding: 10px 15px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 4px solid #cd3700;
+    background: rgba(245,245,245,.97);
+    text-shadow: 0px 1px 1px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 1px 4px #666;
+}
+
+/* 
+ ********* SCROLLBAR *********
+ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    border-width: 8 0 8 0;
+    -webkit-border-image: url(thumb.png) 8 0 8 0 stretch stretch;
+}
