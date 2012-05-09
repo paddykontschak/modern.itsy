@@ -1,6 +1,6 @@
 {
 	CFBundleIdentifier = "com.patrickkontschak.itsytheme.itsymodern";
 	ItsyThemeName = Modern;
-	ItsyThemeAuthor = CapnGoat;
-	ItsyThemeURL = "http://capngoat.deviantart.com/";
+	ItsyThemeAuthor = "Patrick Kontschak";
+	ItsyThemeURL = "http://github.com/paddykontschak/modern.itsy";
 }
